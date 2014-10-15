@@ -1,14 +1,17 @@
 require "formula"
 
-class OpenJazz < Formula
+class Openjazz < Formula
   homepage "http://www.alister.eu/jazz/oj/"
-  url "https://github.com/mikepurvis/openjazz/archive/master.tar.gz"
+  head "https://github.com/mikepurvis/openjazz.git"
 
   depends_on "pkg-config" => :build
   depends_on "sdl"
   depends_on "libmodplug"
-  
+
   def install
-    system "make", "install"
+    system "make", "CXXFLAGS=-DDATAPATH=\"\\\"/usr/local/share/\\\"\""
+
+    bin.install "OpenJazz"
+    share.install "openjazz.000"
   end
 end
